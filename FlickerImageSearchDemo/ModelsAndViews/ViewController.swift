@@ -75,7 +75,6 @@ extension ViewController {
         let navitem = UINavigationItem()
         let organiseItem = UIBarButtonItem.init(image: UIImage.init(named: "OptionsIcon"), style: .done, target: self, action: #selector(optionsButtonTapped(sender:)))
         organiseItem.tintColor = .white
-        navitem.rightBarButtonItem = organiseItem
         
         let btnFrame = organiseItem.customView?.bounds
         var textFieldFrame = CGRect(x:5, y:5, width: 0, height:34)
@@ -89,7 +88,9 @@ extension ViewController {
         self.searchTextField?.returnKeyType = .search
         self.searchTextField?.clearButtonMode = .whileEditing
         navitem.leftBarButtonItem = UIBarButtonItem.init(customView: self.searchTextField!)
-        self.navigationController?.navigationBar.setItems([navitem], animated: true)
+        
+        self.navigationController?.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: self.searchTextField!)
+        self.navigationController?.navigationItem.rightBarButtonItem = organiseItem
         
         //setting up collection view
         collectionView.delegate = self
